@@ -1,0 +1,70 @@
+@import "./src/styles/colors.scss";
+
+section {
+  display: flex;
+  text-align: center;
+  padding-top: 60px;
+  margin-bottom: -4%;
+  width: 49%;
+  height: 49%;
+  position: absolute;
+  left: 380px;
+  bottom: 28%;
+  color: $mainColor;
+
+  label {
+    color: $mainColor;
+    padding-right: 12px;
+    font-size: 16px;
+  }
+
+  button {
+    margin-top: 6%;
+    margin-left: 9%;
+    padding-left: 27px;
+    width: 30%;
+  }
+  img {
+    position: relative;
+    bottom: 30%;
+    right: 3%;
+    width: 89%;
+    height: 110%;
+  }
+}
+.forgot-password {
+  margin-top: 10px;
+  text-align: right;
+}
+
+.forgot-password a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
+
+.dialog {
+  // Custom styles for the dialog
+}
+
+.forgot-password-form {
+  .form-group {
+    margin-bottom: 10px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .p-inputtext {
+    width: 80%;
+  }
+
+  .p-button {
+    width: 50%;
+  }
+}

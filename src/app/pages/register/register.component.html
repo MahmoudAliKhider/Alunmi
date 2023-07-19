@@ -1,0 +1,88 @@
+<div class="container" *ngIf="registerForm">
+  <img src="/assets/images/gr5.jpg" alt="icon Grad">
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <div class="example-container fadeinright animation-duration-4300">
+      <div class="gender">
+        <h3>Gender: </h3>
+        <div class="p-field-radiobutton">
+          <p-radioButton value="Male" formControlName="gender" inputId=" gfg1">
+          </p-radioButton>
+          <label for=" gfg1">Male</label>
+        </div>
+        <div class="p-field-radiobutton">
+          <p-radioButton value="Female" formControlName="gender" inputId=" gfg2">
+          </p-radioButton>
+          <label for=" gfg2">Female</label>
+        </div>
+      </div>
+      <br>
+      <div class="width-50">
+        <span class="p-float-label">
+          <input id="float-input" formControlName="firstName" type="text" pInputText>
+          <small class="p-error" *ngIf="registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched">
+            first_Name is required
+          </small>
+          <label for="float-input">Firstname</label>
+        </span>
+      </div>
+      <div class="left col-12">
+        <span class="p-float-label">
+          <input id="float-input1" formControlName="lastName" type="text" pInputText>
+          <small class="p-error" *ngIf="registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched">
+            last_Name is required
+          </small>
+          <label for="float-input1">Lastname</label>
+        </span>
+      </div>
+      <br>
+
+      <div class="width-100">
+        <span class="p-float-label">
+          <input id="float-input2" formControlName="email" type="email" pInputText>
+          <label for="float-input2">Email</label>
+        </span>
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error-message">
+          <ng-container *ngIf="registerForm.controls['email']?.errors?.['required']">Email is required.</ng-container>
+          <ng-container *ngIf="registerForm.controls['email']?.errors?.['email']">Invalid email format.</ng-container>
+          <ng-container *ngIf="registerForm.controls['email']?.errors?.['pattern']">Invalid email format.</ng-container>
+        </div>
+      </div>
+
+      <br>
+
+      <div class="width">
+        <p-password [toggleMask]="true" formControlName="password" placeholder="Enter Your Password"></p-password>
+      </div>
+      <div class="passRight col-12">
+        <p-password [toggleMask]="true" formControlName="confarmPassword" placeholder="Confirm Password"></p-password>
+      </div>
+      <br>
+
+      <div class="width-50">
+        <div class="field ">
+          <p-calendar placeholder="Enter Your Brith" [maxDate]="maxDateOfBirth" formControlName="dateOfBirth"
+            [showIcon]="true" inputId="icon"></p-calendar>
+        </div>
+      </div>
+
+      <div class="width-50 ml-1">
+        <div class="field col-11 ">
+          <p-calendar placeholder="Graduation Year" [maxDate]="maxGraduationYear" formControlName="graduationYear"
+            [readonlyInput]="true" [showIcon]="true" inputId="min-max"></p-calendar>
+        </div>
+      </div>
+
+      <br><br>
+      <div class="button">
+        <p-toast></p-toast>
+        <button pButton pRipple type="submit" class="p-button-raised"
+          [disabled]="registerForm.invalid || (registerForm.value.password !== registerForm.value.confarmPassword)">Register</button>
+        <!-- <div class="login">
+          <a routerLink="/login">I already Have Acount</a>
+        </div> -->
+      </div>
+    </div>
+  </form>
+
+</div>

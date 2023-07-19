@@ -1,0 +1,106 @@
+@import "./src/styles/colors.scss";
+
+.navbar {
+  background-color: $mainColor;
+  color: #fff;
+  padding: 3px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 3px 5px -1px #0003, 0 6px 10px #00000024, 0 1px 18px #0000001f;
+}
+
+.navbar-brand {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+img {
+  margin-left: 5%;
+  width: 60px;
+  height: 50px;
+}
+
+.navbar-brand i {
+  font-size: 2.5rem;
+  margin-right: 5px;
+}
+
+.p-inputgroup-addon {
+  margin-left: 8%;
+  background-color: #fff;
+  border: none;
+}
+h3 {
+  font-size: 20px;
+  font-weight: bold;
+  // margin: 0;
+  margin-left: 30px;
+}
+
+.p-inputtext {
+  border: none;
+  border-radius: 0;
+  transition: all 0.3s ease-in-out;
+  width: 230px;
+}
+
+.p-inputgroup:focus-within .p-inputtext {
+  box-shadow: none;
+  border-color: transparent;
+  width: 300px;
+}
+
+.navbar-menu {
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.p-menubar {
+  background-color: #0077b5;
+  color: #fff;
+}
+
+.p-menuitem-link {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+
+.p-menuitem-text {
+  margin-left: 5px;
+}
+
+.p-button-link {
+  color: white;
+  text-decoration: none;
+}
+.my-link {
+  color: wheat;
+}
+
+.login-button,
+.register-button {
+  background-color: #fff;
+
+  text-decoration: none;
+  margin: 6px;
+}
+
+.p-button {
+  color: $mainColor;
+}
+
+.navbar .p-button.login-button,
+.navbar .p-button.register-button {
+  margin-left: 10px;
+}
+
+.navbar-menu {
+  background: #011927 !important;
+  color: #022a3f;
+}

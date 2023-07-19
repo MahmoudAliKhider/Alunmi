@@ -1,0 +1,19 @@
+<div class="p-grid p-nogutter navbar">
+    <div class="p-col-6 p-md-4">
+        <form class="p-inputgroup">
+            <a class="navbar-brand">
+              <img src="/assets/images/logo.png" routerLink="/" alt="icon Grad">
+            </a>
+            <!-- <h3 routerLink="/">Gradlink</h3> -->
+        </form>
+    </div>
+    <div class="p-col-12 p-md-4">
+        <ng-container *ngIf="(currentUser$ | async)=== undefined">
+            <a pButton label="Login" icon="pi pi-user-plus" routerLink="/login" class="login-button"></a>
+            <a pButton label="Register" icon="pi pi-user-plus" routerLink="/register" class="register-button"></a>
+        </ng-container>
+
+       <p-menubar *ngIf="(currentUser$ | async)" [model]="menuItems"  styleClass="navbar-menu"></p-menubar>
+
+    </div>
+</div>

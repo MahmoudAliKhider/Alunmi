@@ -1,0 +1,12 @@
+<form (ngSubmit)="onSubmit()">
+  <label for="currentPassword">Current Password:</label>
+  <!-- <input type="password" id="currentPassword" [(ngModel)]="currentPassword" required> -->
+  <p-password [toggleMask]="true" id="currentPassword" name="currentPassword" [(ngModel)]="currentPassword"
+    required></p-password>
+  <br>
+  <label for="newPassword">New Password:</label>
+  <p-password [toggleMask]="true" id="newPassword" name="newPassword" [(ngModel)]="newPassword" required></p-password>
+  <br>
+
+  <button type="submit">Change Password</button>
+</form>

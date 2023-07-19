@@ -1,0 +1,38 @@
+.section-sm {
+  padding-bottom: 0;
+
+  .container {
+    .row {
+      .col-12 {
+        .text-center {
+          h1.page-not-found-title {
+            font-size: 102px;
+            color: #0056b3;
+            font-weight: bold;
+          }
+
+          p.mb-4 {
+            margin-bottom: 4rem;
+            font-size: 20px;
+          }
+
+          a.btn {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            background-color: #0056b3;
+            color: #fff;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+
+            &:hover {
+              background-color: #4372a4;
+            }
+          }
+        }
+      }
+    }
+  }
+}

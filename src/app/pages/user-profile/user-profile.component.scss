@@ -1,0 +1,326 @@
+@import "./src/styles/colors.scss";
+
+.card {
+  position: relative;
+  left: 10%;
+  width: 80%;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+.imageBackground {
+  max-width: 100%;
+  border-radius: 12px;
+  img {
+    position: relative;
+    width: 100%;
+    border: 2px solid $mainColor;
+    border-radius: 12px;
+  }
+  button {
+    position: absolute;
+    width: 27%;
+    left: 0%;
+    top: 0.1%;
+    border: 3px solid gray;
+    background-color: #fff;
+    color: $mainColor;
+  }
+}
+// .custom-file {
+//   position: absolute;
+//   top: 23%;
+//   width: 80%;
+//   height: calc(2em + 0.75rem + 2px);
+// }
+// .custom-file-input {
+//   position: absolute;
+//   z-index: 2;
+//   width: 10%;
+//   top: 25%;
+//   right: 0;
+//   left: 44%;
+//   height: calc(1.5em + 0.75rem + 2px);
+//   margin: 10px;
+//   opacity: 0;
+// }
+
+// .custom-file-label {
+//   position: absolute;
+//   top: 27%;
+//   right: 0;
+//   left: 44%;
+//   z-index: 1;
+//   height: calc(1.5em + 0.75rem + 2px);
+//   padding: 0.375rem 0.75rem;
+//   width: 20%;
+//   line-height: 1.5;
+//   color: #fff;
+//   border-radius: 10px;
+//   background-color: $mainColor;
+// }
+.imageUser {
+  width: 50%;
+  img {
+    position: absolute;
+    left: 67%;
+    top: 30%;
+    width: 27%;
+    border: 4px solid $mainColor;
+    border-radius: 50%;
+  }
+  button {
+    width: 5%;
+    border: 4px solid;
+    position: absolute;
+    left: 46%;
+    top: 70%;
+    color: $mainColor;
+    background-color: #fff;
+  }
+}
+.userData {
+  margin-top: 8%;
+  h1 {
+    width: 30%;
+    position: relative;
+    left: 65%;
+    text-align: center;
+  }
+  p {
+    position: absolute;
+    top: 420px;
+    text-align: left;
+    padding: 20px;
+    width: 60%;
+    font-size: 22px;
+  }
+}
+.prof {
+  width: 390px;
+  position: relative;
+  left: 65%;
+  p-button {
+    border: 2px solid $mainColor;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    padding-top: 30px;
+    text-align: center;
+  }
+  .followButton {
+    background-color: $mainColor;
+    a {
+      color: #fff;
+    }
+  }
+}
+
+.custom-file {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.custom-file input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.custom-file-label {
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 12px;
+  background-color: $mainColor;
+  color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.custom-file-label img {
+  width: 25px;
+  height: 25px;
+  border: 1px solid;
+  padding: 4px;
+  border-radius: 6px;
+  margin-right: 5px;
+}
+
+.p-card {
+  position: relative;
+  left: 10%;
+  width: 80%;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  margin-top: 2%;
+  padding-bottom: 2%;
+  h3 {
+    text-align: center;
+    padding: 2% 2% 0.5% 1%;
+  }
+  p {
+    padding-left: 2%;
+    text-align: center;
+  }
+}
+.messsage {
+  position: absolute;
+  left: 64%;
+  bottom: 75%;
+}
+.right {
+  position: absolute;
+  left: 78%;
+  width: 20%;
+  top: 144%;
+  border-radius: 10px;
+  padding: 1%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  img {
+    position: absolute;
+    left: 11%;
+  }
+}
+
+.card2 {
+  display: inline-block;
+  flex-wrap: wrap;
+  padding: 4px;
+  margin-top: 1%;
+  margin: 12px;
+  background-color: $mainColor;
+  border-radius: 10px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+
+  img {
+    border-radius: 20px;
+  }
+  .a-button {
+    width: 90%;
+    text-decoration: none;
+    margin: 6px;
+    display: block;
+    text-align: center;
+    font-size: 1px;
+    font-size: 13px;
+    background-color: $mainColor;
+  }
+}
+.addImage {
+  border: 2px solid;
+  border-radius: 23px;
+  width: 20%;
+  padding: 1%;
+  background-color: $mainColor;
+  color: #fff;
+}
+.header {
+  position: absolute;
+  top: -1%;
+  left: 0.4%;
+  display: flex;
+  width: 40%;
+  a {
+    text-decoration: none;
+    color: #000;
+    text-align: left;
+  }
+  img {
+    width: 14%;
+    height: 8%;
+    margin-right: 2%;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    color: $mainColor;
+  }
+}
+.creatAt {
+  position: absolute;
+  left: 7%;
+  top: 15%;
+  font-size: small;
+  color: gray;
+}
+
+.postCard {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.postCard p-card {
+  width: 86%;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  max-width: 900px;
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.postCard .header {
+  left: 20%;
+  top: 4%;
+  position: absolute;
+  display: flex;
+  align-items: center;
+}
+
+.postCard .header img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.postCard .header h4 {
+  margin: 0;
+}
+
+.postCard .creatAt {
+  position: absolute;
+  left: 12.5%;
+  top: 35%;
+  margin-top: 20px;
+}
+
+.postCard p-divider {
+  margin: 10px 0;
+}
+
+.postCard p {
+  margin: 0;
+}
+
+.spinner {
+  position: absolute;
+  top: 27%;
+  right: 0;
+  left: 40%;
+}
+.pos {
+  position: relative;
+  left: 20%;
+}
+.circle {
+  position: absolute;
+  left: 36%;
+  top: 43%;
+}
+.follow {
+  position: absolute;
+  top: 2%;
+  font-size: large;
+}

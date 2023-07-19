@@ -1,0 +1,330 @@
+<div class="p-inputgroup">
+  <ng-container class="cont">
+    <span class="p-inputgroup-addon">
+      <i class="pi pi-search"></i>
+    </span>
+    <input class="p-inputtext" [(ngModel)]="postParams!.keyword" (keyup.enter)="loadPosts()" type="text"
+      placeholder="Search" />
+  </ng-container>
+</div>
+
+<app-loading *ngIf="isLoading"></app-loading>
+
+<div class="all">
+  <p-scrollPanel [style]="{ width:'400px',height: '950px' }">
+    <div class="left">
+
+      <div *ngIf="isLoading; else content1">
+        <br>
+        <div class="flex mb-3">
+          <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+          <div>
+            <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+            <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+            <p-skeleton height=".5rem"></p-skeleton>
+          </div>
+        </div>
+        <br>
+        <br>
+        <p-skeleton width="100%" height="550px"></p-skeleton>
+      </div>
+      <ng-template #content1>
+        <div class="left-sidebar">
+          <div class="profile-name">
+            <img src={{retrieveImage()}} class="profile-photo" alt="" (error)="onImageError($event)">
+            <h4><a class="name">{{userData?.fullName|titlecase}}</a></h4>
+            <a class="name">
+              graduationYear:- {{userData?.graduationYear|date}}
+            </a>
+          </div>
+          <div class="list">
+            <br>
+            <!-- <h3>Who to Follow </h3> -->
+            <div class="follow-user">
+              <p-tabView>
+                <p-tabPanel header="followers" leftIcon="pi pi-users">
+                  <div class="container">
+                    <h2>followers</h2>
+                    <div class="followers-content">
+                      <div class="follow-user" *ngFor="let follower of followers">
+                        <img alt="" src={{follower.imageUrl}} (error)="onImageError($event)">
+                        <div>
+                          <h4>
+                            <a>{{follower.fullName|titlecase}}</a>
+                          </h4>
+                        </div>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+                </p-tabPanel>
+                <p-tabPanel header="Following" leftIcon="pi pi-users">
+                  <div class="container">
+
+                    <h2>Followed-By</h2>
+                    <div class="followers-content">
+                      <div class="network" *ngFor="let follow of following">
+                        <img alt="" src={{follow.imageUrl}}>
+
+                        <div>
+                          <h4>
+                            <a>{{follow.fullName|titlecase}}</a>
+                          </h4>
+                        </div>
+                        <br>
+                      </div>
+                    </div>
+                  </div>
+                </p-tabPanel>
+              </p-tabView>
+            </div>
+            <br>
+          </div>
+          <div class="chat-online">
+            <div class="title">Users</div>
+            <ul class="online-user" *ngFor="let user of users">
+              <li>
+                <a title="{{user.fullName}}">
+                  <img src={{user.imageUrl}} [alt]="user.fullName" alt="" (error)="onImageError($event)">
+                  <span class="online-dot">
+
+                  </span>
+                  <!-- <div class="indicator" [ngClass]="{ 'connected': isConnected, 'disconnected': !isConnected }"></div> -->
+                </a>
+              </li>
+              <a style="font-size: 12px;margin-bottom: 30px; width: 50px;">{{user.fullName|titlecase}}</a>
+
+
+            </ul>
+          </div>
+
+        </div>
+      </ng-template>
+
+
+    </div>
+  </p-scrollPanel>
+
+  <p-scrollPanel [style]="{ width:'810px',height: '950px' }" class="right">
+
+    <div class="container">
+
+      <div class="post-creator">
+        <div class="profile">
+          <img src={{retrieveImage()}} alt="" (error)="onImageError($event)">
+          <div class="head">
+            <h4>{{userData?.fullName|titlecase}}</h4>
+            <p>public ↕️</p>
+          </div>
+        </div>
+
+        <div class="post">
+          <div class="  justify-content-center ">
+            <div class="scalein animation-duration-2000 animation-iteration-infinite  ">
+              <button pButton pRipple type="button" (click)="showDialog()" icon="pi pi-plus" label="createPost"
+                class="p-button-rounded p-button-success p-button-text"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p-dialog class="dialog" header="Create a new Post" [(visible)]="display" [style]="{width: '35vw',height:'33vw'}"
+        [modal]="true" [draggable]="true" [resizable]="false" [maximizable]="true">
+
+        <section class="dialog-content" *ngIf="postForm">
+          <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <textarea formControlName="content" rows="5" cols="30" placeholder="Add Content"
+                pInputTextarea></textarea>
+            </div>
+            <div class="form-group">
+              <div class="upload-container">
+                <label for="image">
+                  <img src="assets/images/cam.png" alt="Camera Icon"> Click to Upload Image
+                  <input type="file" id="image" formControlName="image">
+                </label>
+                <p-progressSpinner class='spinner' [style]="{width: '40px', height: '40px'}"
+                  *ngIf="loading"></p-progressSpinner>
+              </div>
+            </div>
+            <div class="form-group">
+              <button pButton pRipple type="submit" class="create-button" [disabled]="postForm.invalid">Create</button>
+            </div>
+          </form>
+        </section>
+
+      </p-dialog>
+
+
+      <div *ngIf="isLoading; else content">
+        <div class="card">
+          <div class="border-round border-1 surface-border p-4 surface-card">
+            <div class="flex mb-3">
+              <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+              <div>
+                <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton height=".5rem"></p-skeleton>
+              </div>
+            </div>
+            <p-skeleton width="100%" height="150px"></p-skeleton>
+            <div class="flex justify-content-between mt-3">
+              <p-skeleton width="4rem" height="2rem"></p-skeleton>
+              <p-skeleton width="4rem" height="2rem"></p-skeleton>
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="card">
+          <div class="border-round border-1 surface-border p-4 surface-card">
+            <div class="flex mb-3">
+              <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+              <div>
+                <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton width="5rem" styleClass="mb-2"></p-skeleton>
+                <p-skeleton height=".5rem"></p-skeleton>
+              </div>
+            </div>
+            <p-skeleton width="100%" height="150px"></p-skeleton>
+            <div class="flex justify-content-between mt-3">
+              <p-skeleton width="4rem" height="2rem"></p-skeleton>
+              <p-skeleton width="4rem" height="2rem"></p-skeleton>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ng-template #content>
+
+        <p-dialog class="dialog" header="Update a Post" [(visible)]="displayModal"
+          [style]="{width: '35vw',height:'33vw'}" [modal]="true">
+          <section class="dialog-content" *ngIf="updatePostForm">
+            <form [formGroup]="updatePostForm" (ngSubmit)="onUpdate()" class="common-form">
+              <div class="form-group">
+                <textarea pInputTextarea type="text" rows="7" cols="80" [autoResize]="false" placeholder="Update Post"
+                  name="content" id="content" formControlName="content" [value]="postData?.content"></textarea>
+              </div>
+              <div class="form-group">
+                <img src="assets/images/cam.png" alt="Camera Icon"> 
+                <input type="file" id="image" (change)="onImageChange($event)" accept="image/*" />
+                <p-progressSpinner class='spinner' [style]="{width: '40px', height: '40px'}"
+                  *ngIf="loading"></p-progressSpinner>
+              </div>
+
+              <div class="form-group">
+                <button pButton pRipple type="submit"
+                  class="create-button p-button-raised fadeinright animation-duration-2000">Update</button>
+              </div>
+            </form>
+          </section>
+        </p-dialog>
+
+        <div class="card">
+          <div class="row" *ngFor="let post of posts">
+            <div class="col-12 card">
+              <p-card>
+                <div class="header">
+                  <img src={{post.ownerImageUrl}} alt="icon Grad">
+                  <span class="post-owner-name" (click)="getOwnerData(post.ownerId)">
+                    <h4>{{post.ownerName|titlecase}}</h4>
+                  </span>
+                  <div class="creatAt">
+                    <p>{{post.createdAt|date}}</p>
+                  </div>
+                </div>
+
+                <br>
+                <br>
+                <p-divider></p-divider>
+                <p class="content">{{post.content}}.</p>
+                <div *ngIf="post.postImageUrl" class="image-post">
+                  <img src="{{post.postImageUrl}}" style="height: 470px;" [alt]="post.imageMetadata">
+                </div>
+                <p-divider></p-divider>
+
+                <div class="speeddial-tooltip-demo">
+                  <button *ngIf="loggedInUserId === post.ownerName" pButton pRipple type="button" icon="pi pi-trash"
+                    class="p-button-rounded p-button-danger p-button-text" (click)="removePost(post.id)"></button>
+
+                  <button *ngIf="loggedInUserId === post.ownerName" pButton pRipple type="button" icon='pi pi-pencil'
+                    class="p-button-rounded p-button-text" (click)="showPostUpdateDialog(post.id)"></button>
+                </div>
+
+                <div class="post-action">
+                  <div class="like-button">
+                    <div (click)="likePost(post)">
+                      <span class="like-icon" *ngIf="!post.isLikedByCurrentUser">
+                        🤍
+                      </span>
+                      <span class="like-icon" *ngIf="post.isLikedByCurrentUser">
+                        ❤️
+                      </span>
+                    </div>
+                    <button (click)="loadComments(post.id)" class="comment-button">
+                      <i class="pi pi-comment"> comment</i>
+                    </button>
+                  </div>
+                  <div *ngIf="commentForm" class="comment-section">
+                    <div class="comment-form">
+                      <form [formGroup]="commentForm">
+                        <div>
+                          <label for="content">Comment:</label>
+                          <textarea id="content" formControlName="content"></textarea>
+                        </div>
+                        <button (click)="createComment(post.id)" class="load-comments-button"><i
+                            class="pi pi-send">Send</i></button>
+                      </form>
+                    </div>
+                  </div>
+
+                  <div class="comment-section2">
+                    <p-scrollPanel *ngIf="postComments[post.id]" [style]="{ width:'600px',height:'120px' }">
+                      <div *ngFor="let comment of postComments[post.id]" class="comment">
+                        <div class="header2">
+                          <img [src]="comment.ownerImageUrl" alt="Owner Image" class="comment-owner-image"
+                            (error)="onImageError($event)">
+                          <h4>{{comment.commentOwner}}</h4>
+                        </div>
+                        <p [innerHTML]="sanitizeCommentContent(comment.content)" class="comment-content"></p>
+                        <p class="comment-date">{{ comment.createdAt }}</p>
+                      </div>
+                    </p-scrollPanel>
+                  </div>
+
+                </div>
+              </p-card>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+      <p-paginator *ngIf="pagination" [rows]="pagination.pageSize" [totalRecords]="pagination.totalCount"
+        (onPageChange)="onPageChanged($event)"></p-paginator>
+    </div>
+  </p-scrollPanel>
+
+  <p-scrollPanel [style]="{ width:'270px',height: '900px' }">
+    <div class="users">
+      <div class="title">Users</div>
+      <br>
+      <div class="user" *ngFor="let user of users">
+
+        <div class="headr">
+          <img src={{user.imageUrl}} [alt]="user.fullName" alt="" (error)="onImageError($event)">
+          <p>{{user.fullName|titlecase}}</p>
+        </div>
+
+        <div class="body-user">
+          <div class="user-button">
+            <i class="pi pi-user" (click)="getOwnerData(user.id)"></i>
+            <i class="pi pi-envelope" (click)="message(user.id)"></i>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </p-scrollPanel>
+
+</div>

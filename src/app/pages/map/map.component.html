@@ -1,0 +1,6 @@
+<div class="card-details">
+  <h2>{{ card?.title }}</h2>
+  <div class="pdf-container">
+    <embed *ngIf="pdfUrl" [src]="pdfUrl" type="application/pdf" width="100%" height="700px" />
+  </div>
+</div>

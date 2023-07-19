@@ -1,0 +1,63 @@
+<div class="scroll-panel-container">
+  <div class="scroll-panel-container">
+    <div class="left-panel">
+      <p-scrollPanel [style]="{ height: '690px',width:'500px' }" styleClass="custombar2">
+        <div class="followers-container">
+          <div *ngFor="let follower of users" class="follower" (click)="loadMessagesForFollower(follower)">
+            <img [src]="follower.imageUrl" class="follower-avatar" (error)="onImageError($event)" />
+            <div class="follower-details">
+              <h3>{{ follower.fullName | titlecase }}</h3>
+              <p>{{ follower.joinedAt | date }}</p>
+            </div>
+          </div>
+        </div>
+      </p-scrollPanel>
+    </div>
+
+    <div class="right-panel">
+      <p-scrollPanel [style]="{ height: '710px',width:'100%' }">
+        <img src="/assets/images/con2.jpg" *ngIf="!userId">
+        <p-card [style]="{ width: '100%'}" *ngIf="userId">
+          <app-loading *ngIf="isLoading"></app-loading>
+          <div class="header">
+            <h2>{{fullName|uppercase}}</h2>
+          </div>
+          <p-scrollPanel [style]="{ width: '1000px', height: '550px'}">
+
+            <div class="messages-container">
+              <div *ngFor="let message of messages"
+                [ngClass]="{'sent': message.recipientId, 'received': message.senderId !== userId}" class="message">
+                <div class="message-header">
+                  <img [src]="message.senderImageUrl" alt="{{ message.senderName }} profile picture"
+                    (error)="onImageError($event)">
+                  <div class="message-sender-name">{{ message.senderName }}</div>
+
+                </div>
+                <div class="message-body">
+                  <!-- <p-splitButton class="rem" [model]="deleteOptions" (onClick)="selectMessage(message.id)"  styleClass="p-button-rounded mr-2 mb-2"></p-splitButton> -->
+                  {{ message.content }}
+                  <br>
+                  <!-- <button class="rem" (click)="removeMessage(message.id)"></button> -->
+                </div>
+                <div class="message-footer">{{ message.dateRead | date: 'short' }}</div>
+                <div class="message-delete">
+                  <button pButton type="button" icon="pi pi-trash" class="p-button-danger" (click)="removeMessage(message.id)"></button>
+                </div>
+              </div>
+            </div>
+
+
+          </p-scrollPanel>
+
+          <form *ngIf="messageForm" [formGroup]="messageForm" (ngSubmit)="sendMessage()" class="message-form">
+
+            <input pInputText type="text" formControlName="content" placeholder="Type a message...">
+            <button pButton type="submit"><i class="pi pi-send"></i></button>
+
+          </form>
+
+        </p-card>
+      </p-scrollPanel>
+    </div>
+
+  </div>

@@ -1,0 +1,11 @@
+<div class="card-list">
+  <div class="row">
+    <div class="col-6" *ngFor="let card of cards; let i = index" (click)="viewCardDetails(card.id)">
+      <p-card class="card-item" [header]="card.title" [subheader]="card.subtitle">
+        <ng-template pTemplate="content">
+          {{ card.content }}
+        </ng-template>
+      </p-card>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,62 @@
+<p-tabView>
+  <app-loading *ngIf="isLoading"></app-loading>
+
+  <div *ngIf="isLoading; else content2">
+    <br>
+    <p-skeleton width="20rem" styleClass="mb-2"></p-skeleton>
+    <p-skeleton width="14rem" styleClass="mb-2"></p-skeleton>
+    <br>
+    <p-skeleton width="97%" height="400px" ></p-skeleton>
+  </div>
+
+  <ng-template #content2>
+  <p-tabPanel header="followers" leftIcon="pi pi-users">
+    <app-loading *ngIf="isLoading"></app-loading>
+    <p-scrollTop></p-scrollTop>
+
+    <div class="container">
+      <h2>followers</h2>
+      <div class="followers-content">
+        <div class="network" *ngFor="let follower of followers">
+          <p-card class="card" header="{{follower.fullName|titlecase}}" subheader="{{follower.gender|titlecase}}"
+            [style]="{ width: '360px' }">
+            <ng-template pTemplate="header">
+              <div class="img-circle">
+                <img class="btn-link" alt="" src={{follower.imageUrl}}>
+              </div>
+            </ng-template>
+            <p> My name is {{follower.fullName|titlecase}} 🎓. I work in the field of
+              programming. I graduated in ⏲️ {{follower.graduationYear|date}} 😊. I joined this program
+              in {{follower.joinedAt|date}} 😛.</p>
+          </p-card>
+        </div>
+      </div>
+
+    </div>
+  </p-tabPanel>
+  <p-tabPanel header="Following" leftIcon="pi pi-users">
+    <p-scrollTop></p-scrollTop>
+
+    <h2>Followed-By </h2>
+    <div class="followers-content">
+      <div class="network" *ngFor="let follow of following">
+        <p-card class="card" header="{{follow.fullName|titlecase}}" subheader="{{follow.gender|titlecase}}"
+          [style]="{ width: '360px' }">
+          <ng-template pTemplate="header">
+            <div class="img-circle">
+              <img class="btn-link" [alt]="'Image of ' + follow.fullName" src={{follow.imageUrl}}>
+            </div>
+          </ng-template>
+          <p> My name is {{follow.fullName|titlecase}} 🎓. I work in the field of
+            programming. I graduated in ⏲️ {{follow.graduationYear|date}} 😊. I joined this program
+            in {{follow.joinedAt|date}} 😛.</p>
+          <!-- <ng-template pTemplate="footer">
+        </ng-template> -->
+        </p-card>
+
+      </div>
+    </div>
+  </p-tabPanel>
+</ng-template>
+
+</p-tabView>

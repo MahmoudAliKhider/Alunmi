@@ -1,0 +1,68 @@
+@import "./src/styles/colors.scss";
+
+.container {
+  color: $mainColor;
+  position: absolute;
+  width: 38%;
+  left: 40%;
+  padding: 50px;
+  font-family: Arial, Helvetica, sans-serif;
+  button {
+    left: 37%;
+    width: 110px;
+    padding-left: 5%;
+  }
+  input {
+    color: $mainColor;
+    width: 100%;
+  }
+}
+
+a {
+  text-decoration: none;
+}
+
+.width-50 {
+  width: 45%;
+}
+.ml-1 {
+  position: absolute;
+  top: 61%;
+  left: 50%;
+}
+.ml-2 {
+  margin-left: 2%;
+}
+.width-100 {
+  width: 100%;
+  margin-top: 5px;
+}
+.width-25 {
+  width: 25%;
+}
+.left {
+  position: absolute;
+  width: 40%;
+  left: 51%;
+  top: 23%;
+}
+.passRight {
+  position: absolute;
+  left: 50%;
+  top: 49%;
+}
+.gender {
+  display: flex;
+  p-radioButton,label{
+    position: relative;
+    left: 40%;
+    top: 25%;
+  }
+}
+img {
+  position: absolute;
+  bottom: 13%;
+  right: 100%;
+  width: 70%;
+  height: 80%;
+}

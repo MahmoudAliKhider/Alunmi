@@ -1,0 +1,30 @@
+.card-list {
+  display: flex;
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: #ffffff;
+  margin-left: 100px;
+  margin-right: 100px;
+  border-radius: 20px;
+
+}
+
+.card-item {
+  flex: 0 0 calc(55% - 20px);
+  margin: 20px;
+  
+}
+
+.card-item:hover {
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+  transform: scale(1.05);
+  background-color: #424040;
+  transition: box-shadow 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+}
+
+

@@ -1,0 +1,49 @@
+<section *ngIf="loginForm" class="login-section">
+  <div class="icon-container">
+    <img src="/assets/images/g2.png" alt="Grad Icon">
+  </div>
+
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="form-container">
+    <div class="form-group">
+      <label for="email">Email</label>
+      <p-autoComplete formControlName="email" placeholder="Email" type="email"></p-autoComplete>
+      <div *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" class="error-message">
+        <small>Email is required and must be valid</small>
+      </div>
+    </div>
+    <br>
+    <div class="form-group">
+      <label for="password">Password</label>
+      <p-password formControlName="password" [toggleMask]="true"></p-password>
+      <div *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched" class="error-message">
+        <small>
+          Pass is required and must be 6-10 char,at least 1 upper,1 lower,
+          1 digit, and 1 special char.
+        </small>
+      </div>
+    </div>
+    <div class="forgot-password">
+      <a (click)="showDialog()">Forgot Password?</a>
+    </div>
+    <div class="form-group">
+      <button pButton pRipple type="submit" class="p-button-raised" [disabled]="loginForm.invalid">Login</button>
+    </div>
+  </form>
+
+  <p-dialog class="dialog" header="Forgot Password" [(visible)]="display" [style]="{width: '35vw', height:'24vw'}"
+    [modal]="true" [draggable]="true" [resizable]="false" [maximizable]="true">
+
+    <form (ngSubmit)="submitForm()" class="forgot-password-form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <br>
+        <input type="email" pInputText class="p-inputtext" id="email" name="email" [(ngModel)]="email" required>
+      </div>
+      <br>
+      <button type="submit" pButton class="p-button" label="Submit"></button>
+    </form>
+
+  </p-dialog>
+
+
+</section>

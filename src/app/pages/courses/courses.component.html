@@ -1,0 +1,28 @@
+<p-tabView>
+  <p-tabPanel header="Tracks" leftIcon="pi pi-book">
+    <div class="post-container">
+      <div class="post-card" *ngFor="let post of posts">
+        <div class="card-header">
+          <h2>{{ post.title }}</h2>
+        </div>
+        <div class="card-body">
+          <p>{{ post.description }}</p>
+          <p><a href="{{ post.link }}">For more details and submission, click here</a></p>
+        </div>
+      </div>
+    </div>
+  </p-tabPanel>
+  <p-tabPanel header="Jobs" leftIcon="pi pi-briefcase">
+    <div class="post-container">
+      <div class="post-card" *ngFor="let job of jobs">
+        <div class="card-header">
+          <h2>{{ job.title }}</h2>
+        </div>
+        <div class="card-body">
+          <p>{{ job.description }}</p>
+          <p><a href="{{ job.link }}">For more details and submission, click here</a></p>
+        </div>
+      </div>
+    </div>
+  </p-tabPanel>
+</p-tabView>
